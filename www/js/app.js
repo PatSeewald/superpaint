@@ -93,8 +93,10 @@ let superPaint = (() => { // IIFE
         alert('Camera Fehler');
       },
       {
-        targetWidth:$('#stage').width(),
-        targetHeight: $('#stage').height()
+        targetWidth:$('#stage').height(),
+        targetHeight: $('#stage').height()*0.75,
+        correctOrientation: true,
+
       });
     },
     init() {
