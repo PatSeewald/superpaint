@@ -84,7 +84,7 @@ let superPaint = (() => { // IIFE
       let bg = new Image();
       bg.src = image;
       bg.onload = () => {
-        _t.drawImage(bg, 0, 0);
+        _t.ctx.drawImage(bg, 0, 0);
       }
     },
     openCam(e) {
