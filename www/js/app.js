@@ -85,7 +85,7 @@ let superPaint = (() => { // IIFE
       bg.src = image;
       bg.onload = () => {
         alert(`Image: ${bg.width}/${bg.height}/${$('#stage').height()}`)
-        _t.ctx.drawImage(bg, 0, 0, $('#stage').width(), $('#stage').height());
+        _t.ctx.drawImage(bg, 0, 0, $('#stage').width(), bg.height * $('#stage').width() / bg.width);
       }
     },
     openCam(e) {
@@ -93,11 +93,11 @@ let superPaint = (() => { // IIFE
       navigator.camera.getPicture(_t.addPhoto2Canvas, () => {
         alert('Camera Fehler');
       },
-      {
-        targetWidth:1000,
-        targetHeight: 1500,
-        correctOrientation: true,
-      });
+        {
+          targetWidth: 1000,
+          targetHeight: 1500,
+          correctOrientation: true,
+        });
     },
     init() {
       _t.initPens();
