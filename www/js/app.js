@@ -83,11 +83,18 @@ let superPaint = (() => { // IIFE
     addPhoto2Canvas(image) {
       let bg = new Image();
       bg.src = image;
+      bg.onload = () => {
+        _t.drawImage(bg, 0, 0);
+      }
     },
     openCam(e) {
       e.preventDefault();
       navigator.camera.getPicture(_t.addPhoto2Canvas, () => {
         alert('Camera Fehler');
+      },
+      {
+        targetWidth:$('#stage').width(),
+        targetHeight: $('#stage').height()
       });
     },
     init() {
@@ -99,7 +106,7 @@ let superPaint = (() => { // IIFE
     }
   }
   return _t;
-}) ();
+})();
 
 document.addEventListener('deviceready', () => {
   console.log('Device ready');
