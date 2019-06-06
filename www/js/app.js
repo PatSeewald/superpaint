@@ -84,7 +84,23 @@ let superPaint = (() => { // IIFE
       let bg = new Image();
       bg.src = image;
       bg.onload = () => {
-        alert(`Image: ${bg.width}/${bg.height}/${$('#stage').height()}`)
+        let cw = $('#stage').width();
+        let ch = $('#stage').height();
+
+        alert(`Image: ${bg.width}/${bg.height}\nCanvas: ${cw}/${ch}`)
+
+        let bg_ratio = bg.width/bg.height;
+        let c_ratio = cw/ch;
+        let targetW, targetH;
+
+        if(bg_ratio > c_ratio) {
+          targetW = cw;
+          targetH = cw/bg.width*bg.height;
+        }
+        else {
+          targetH = ch;
+          targetW = ch/bg.height * bg.width;
+        }
         _t.ctx.drawImage(bg, 0, 0, $('#stage').width(), bg.height * $('#stage').width() / bg.width);
       }
     },
@@ -94,8 +110,8 @@ let superPaint = (() => { // IIFE
         alert('Camera Fehler');
       },
         {
-          targetWidth: 1000,
-          targetHeight: 1500,
+          targetW,
+          targetH,
           correctOrientation: true,
         });
     },
